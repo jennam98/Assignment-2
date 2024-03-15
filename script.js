@@ -6,7 +6,7 @@ const netHeight = canvas.height;
 const paddleWidth = 10;
 const paddleHeight = 80;
 const ballRadius = 8;
-const aiSpeed = 5;
+const aiSpeed = 3;
 
 let playerScore = 0;
 let aiScore = 0;
@@ -19,8 +19,8 @@ let paddlePlayerY = (canvas.height - paddleHeight) / 2;
 let paddleAiY = (canvas.height - paddleHeight) / 2;
 let ballX = canvas.width / 2;
 let ballY = canvas.height / 2;
-let ballSpeedX = 3; 
-let ballSpeedY = 3; 
+let ballSpeedX = 2; 
+let ballSpeedY = 2; 
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -115,8 +115,8 @@ function update() {
 function resetBall() {
   ballX = canvas.width / 2;
   ballY = canvas.height / 2;
-  ballSpeedX = 3 * (Math.random() > 0.5 ? 1 : -1);
-  ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1); 
+  ballSpeedX = 2 * (Math.random() > 0.5 ? 1 : -1);
+  ballSpeedY = 2 * (Math.random() > 0.5 ? 1 : -1); 
 }
 
 function gameLoop() {
@@ -128,12 +128,15 @@ function gameLoop() {
 gameLoop();
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowUp') {
-    paddlePlayerY -= 20;
-  } else if (event.key === 'ArrowDown') {
-    paddlePlayerY += 20;
-  }
-});
+    if (event.key === 'ArrowUp' && paddlePlayerY > 0) { 
+      paddlePlayerY -= 20;
+    } else if (event.key === 'ArrowDown' && paddlePlayerY + paddleHeight < canvas.height) { 
+      paddlePlayerY += 20;
+    }
+  });
+  
+
+
 
 
 
